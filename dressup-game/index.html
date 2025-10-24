@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dress Up Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      height: 100vh;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    .game-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 500px;
+      height: 100%;
+      position: relative;
+    }
+
+    /* 상단바 */
+    .top-bar {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px;
+      background-color: #fff;
+      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    #photoBtn {
+      background-color: #ffd966;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    #photoBtn:hover {
+      background-color: #f2c94c;
+    }
+
+    /* 무대 (캐릭터 부분) */
+    .stage {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      max-width: 400px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* 배경, 캐릭터, 의상 레이어 기본 설정 */
+    .layer, .bg, .character {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* 옷장 (버튼 부분) */
+    .wardrobe {
+      width: 100%;
+      background-color: #ffd966;
+      padding: 10px 0 20px;
+      border-top: 2px solid #ddd;
+      z-index: 5;
+    }
+
+    .category-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .category-buttons button {
+      padding: 8px 14px;
+      border: none;
+      border-radius: 8px;
+      background-color: #f58989;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    .category-buttons button:hover {
+      background-color: #de5d5d;
+    }
+
+    .item-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      padding: 5px 0;
+      max-height: 200px;
+      overflow-y: auto;
+    }
+
+    /* 모바일 최적화 */
+    @media (max-width: 480px) {
+      #photoBtn {
+        padding: 8px 12px;
+        font-size: 14px;
+      }
+      .category-buttons button {
+        padding: 6px 10px;
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="game-container">
+    <!-- 상단 -->
+    <div class="top-bar">
+      <button id="photoBtn">📸 Photo Zone</button>
+    </div>
+
+    <!-- 캐릭터 및 배경 -->
+    <div class="stage">
+      <img id="bg" src="assets/backgrounds/room.png" class="bg" />
+      <img id="character" src="assets/characters/char1.png" class="character" />
+      <img id="shoes" class="layer" />
+      <img id="bottom" class="layer" />
+      <img id="top" class="layer" />
+      <img id="dress" class="layer" />
+      <img id="hair" class="layer" />
+      <img id="hat" class="layer" />
+      <img id="acc" class="layer" />
+    </div>
+
+    <!-- 하단: 옷장 -->
+    <div class="wardrobe">
+      <div class="category-buttons">
+        <button data-cat="character">Character</button>
+        <button data-cat="shoes">Shoes</button>
+        <button data-cat="bottoms">Bottoms</button>
+        <button data-cat="tops">Tops</button>
+        <button data-cat="dress">Dress</button>
+        <button data-cat="hair">Hair</button>
+        <button data-cat="hats">Hats</button>
+        <button data-cat="acc">Accessories</button>
+      </div>
+
+      <div id="itemList" class="item-list"></div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
